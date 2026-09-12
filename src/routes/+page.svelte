@@ -49,8 +49,36 @@
     grid-template-columns: masonry;
     grid-template-rows: masonry;
   }
+  /* https://tobiasahlin.com/blog/masonry-with-css/ */
+  .photos {
+    display: flex;
+    flex-flow: column wrap;
+    height: 1200px;
+  }
   .photo {
-    max-width: 200px;
+    width: 33%;
+    position: relative;
+    margin-bottom: 2%;
+    box-sizing: border-box;
+  }
+  .photo:nth-of-type(3n + 1) {
+    order: 1;
+  }
+  .photo:nth-of-type(3n + 2) {
+    order: 2;
+  }
+  .photo:nth-of-type(3n + 3) {
+    order: 3;
+  }
+  .photo:nth-of-type(3n) {
+    order: 4;
+  }
+  .photos::before,
+  .photos::after {
+    content: "";
+    flex-basis: 100%;
+    width: 0;
+    order: 2;
   }
   .desc {
     font-size: 1.5rem;
