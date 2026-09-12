@@ -1,0 +1,44 @@
+[
+  {
+    "url": "https://media.kangaroos.dev/XT2F9430.JPG",
+    "date": "2023-08-01",
+    "description": "A beautiful sunset",
+    "location": "New York"
+  },
+  {
+    "url": "https://media.kangaroos.dev/XT2F8808.JPG",
+    "date": "2023-08-02",
+    "description": "A serene beach",
+    "location": "California"
+  },
+  {
+    "url": "https://media.kangaroos.dev/XT2F9286.JPG",
+    "date": "2023-08-03",
+    "description": "A bustling cityscape",
+    "location": "Tokyo"
+  },
+  {
+    "url": "https://media.kangaroos.dev/XT2F9452.JPG",
+    "date": "2023-08-04",
+    "description": "A tranquil forest",
+    "location": "Canada"
+  },
+  {
+    "url": "https://media.kangaroos.dev/XT2F9753.JPG",
+    "date": "2023-08-05",
+    "description": "A majestic mountain range",
+    "location": "Switzerland"
+  },
+  {
+    "url": "https://media.kangaroos.dev/XT2F9924.JPG",
+    "date": "2023-08-06",
+    "description": "A vibrant street market",
+    "location": "Thailand"
+  },
+  {
+    "url": "https://media.kangaroos.dev/XT2F7923.JPG",
+    "date": "2023-08-07",
+    "description": "A peaceful lake",
+    "location": "Norway"
+  }
+]
