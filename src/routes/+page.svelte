@@ -1,6 +1,7 @@
 <script>
   import { onMount } from "svelte";
   import photos_data from "$lib/assets/photos.json?raw";
+  import ProjectCard from "$lib/ProjectCard.svelte";
 
   const birthday = new Date("2010-02-01");
   const today = new Date();
@@ -49,13 +50,22 @@
 
 <div class="main">
   <nav>
-    <div class="card">
+    <img src="https://avatars.githubusercontent.com/u/81335306?v=4" alt="favicon" width="30%" />
+    <div class="card" id="heading-card">
       <h1 class="my-freaking-name">hi, i'm aji!</h1>
       <p class="desc">i'm a <span id="age">{age}</span>-year-old from new york!</p>
       <p><a role="button" href="https://github.com/tiredkangaroo" class="card-button">github</a></p>
     </div>
   </nav>
-  <h1>photography</h1>
+  <h1 class="section-heading">projects</h1>
+  <div class="projects">
+    <ProjectCard
+      title="mechanical dinosaurs"
+      screenshot_url="https://user-cdn.hackclub-assets.com/019f8c90-2179-7b13-a541-f6955e07ec66/Screenshot%202026-07-22%20at%206.21.12%C3%A2%C2%80%C2%AFPM.png"
+      github_repo="tiredkangaroo/mechanicaldinosaurs"
+    ></ProjectCard>
+  </div>
+  <h1 class="section-heading">photography</h1>
   <div class="photos" id="photos-grid">
     {#each photos as photo, index}
       <img
@@ -70,7 +80,29 @@
 
 <style>
   nav {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
     width: 100%;
+  }
+  .projects {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  #heading-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  .section-heading {
+    background-color: var(--card-bg);
+    color: var(--card-border);
+    padding: 0.4rem 1rem;
+  }
+  .section-heading {
+    font-size: 1.5rem;
   }
   .my-freaking-name {
     font-size: 4rem;
@@ -137,7 +169,7 @@
     width: 50%;
     height: 100%;
     margin: 20px auto;
-    align-items: center;
+    /* align-items: center; */
   }
   @media (max-width: 1000px) {
     .main {
