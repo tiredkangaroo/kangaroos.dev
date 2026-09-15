@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  let { title, screenshot_url, github_repo } = $props();
+  let { title, screenshot_url, github_repo, override_desc } = $props();
 
   let description = $state<undefined | string>(undefined);
   let last_commit = $state<undefined | string>(undefined);
@@ -10,9 +10,9 @@
     fetch("https://api.github.com/repos/" + github_repo)
       .then((res) => res.json())
       .then((data) => {
-        description = data.description;
+        description = data.description || override_desc;
         last_commit = data.pushed_at;
-        homepage = data.homepage;
+        homepage = data.homepage || null;
       });
   });
 </script>
@@ -23,7 +23,7 @@
     <div class="project-info">
       <h2 class="project-title">{title}</h2>
       <p class="project-description">{description}</p>
-      <p class="project-last-commit">Last commit: {new Date(last_commit).toLocaleDateString()}</p>
+      <p class="project-last-commit">Last push: {new Date(last_commit).toLocaleDateString()}</p>
       <a href={"https://github.com/" + github_repo} target="_blank" rel="noopener noreferrer" class="card-button"
         >github</a
       >
@@ -46,6 +46,9 @@
   .project-screenshot {
     width: 100%;
     height: auto;
+  }
+  .project-description {
+    font-family: "Times New Roman", serif;
   }
   .card-button {
     display: inline-block;
