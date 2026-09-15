@@ -14,29 +14,29 @@
   let currentPage = $state(1);
   let selected_photos = $state(photos.slice(0, numPerPage));
 
-  async function updateGridHeight() {
-    await tick(); // Ensure DOM updates are committed
-    const items = Array.from(document.getElementsByClassName("photo"));
-    if (!items.length) return;
+  // async function updateGridHeight() {
+  //   await tick(); // Ensure DOM updates are committed
+  //   const items = Array.from(document.getElementsByClassName("photo"));
+  //   if (!items.length) return;
 
-    const columnHeights = [0, 0, 0];
+  //   const columnHeights = [0, 0, 0];
 
-    items.forEach((item, index) => {
-      const style = window.getComputedStyle(item);
-      const marginTop = parseFloat(style.marginTop) || 0;
-      const marginBottom = parseFloat(style.marginBottom) || 0;
-      const totalItemHeight = item.offsetHeight + marginTop + marginBottom;
+  //   items.forEach((item, index) => {
+  //     const style = window.getComputedStyle(item);
+  //     const marginTop = parseFloat(style.marginTop) || 0;
+  //     const marginBottom = parseFloat(style.marginBottom) || 0;
+  //     const totalItemHeight = item.offsetHeight + marginTop + marginBottom;
 
-      const columnIndex = index % 3;
-      columnHeights[columnIndex] += totalItemHeight;
-    });
+  //     const columnIndex = index % 3;
+  //     columnHeights[columnIndex] += totalItemHeight;
+  //   });
 
-    const maxHeight = Math.max(...columnHeights);
-    const grid = document.getElementById("photos-grid");
-    if (grid) {
-      grid.style.height = `${maxHeight}px`;
-    }
-  }
+  //   const maxHeight = Math.max(...columnHeights);
+  //   const grid = document.getElementById("photos-grid");
+  //   if (grid) {
+  //     grid.style.height = `${maxHeight}px`;
+  //   }
+  // }
 
   function updateLayerHeight() {
     const layer = document.getElementById("photos-layer");
@@ -49,14 +49,11 @@
   }
 
   onMount(() => {
-    updateGridHeight();
     updateLayerHeight();
     window.addEventListener("resize", () => {
-      updateGridHeight();
       updateLayerHeight();
     });
     return () => {
-      window.removeEventListener("resize", updateGridHeight);
       window.removeEventListener("resize", updateLayerHeight);
     };
   });
@@ -95,7 +92,6 @@
         alt={photo.description}
         class="photo"
         onclick={window.location.assign(`/photo?id=${index}`)}
-        onload={updateGridHeight}
       />
     {/each}
   </div>
@@ -175,9 +171,8 @@
   }
   /* https://tobiasahlin.com/blog/masonry-with-css/ */
   .photos {
-    display: flex;
-    flex-flow: column wrap;
-    height: 1200px;
+    column-count: 3;
+    column-gap: 1rem;
   }
   .pagination {
     display: flex;
@@ -186,10 +181,10 @@
     gap: 0.5rem;
   }
   .photo {
-    width: 33%;
-    position: relative;
-    margin-bottom: 2%;
-    box-sizing: border-box;
+    width: 100%;
+    display: block;
+    margin-bottom: 1rem;
+    break-inside: avoid; /* Prevents an image from getting split across columns */
     cursor: pointer;
   }
   .photo:nth-of-type(3n + 1) {
@@ -242,9 +237,14 @@
     .projects {
       grid-template-columns: 1fr;
     }
+    .photos {
+      column-count: 2;
+    }
   }
   @media (max-width: 500px) {
     .photos {
+      column-count: 1;
+      column-gap: 1rem;
       display: flex;
       flex-direction: column;
     }

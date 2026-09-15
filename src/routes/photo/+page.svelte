@@ -30,7 +30,7 @@
     <img src={photo.url} alt={photo.description} class="photo" />
     <div class="photo-info">
       <p class="photo-description">{photo.description}</p>
-      <p class="photo-date">{normalDate(photo.date)}</p>
+      <p class="photo-date">{photo.date ? normalDate(photo.date) : ""}</p>
       <p class="photo-location">{photo.location}</p>
     </div>
   </div>
