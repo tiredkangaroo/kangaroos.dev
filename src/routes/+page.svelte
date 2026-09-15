@@ -10,6 +10,11 @@
 
   let photos = JSON.parse(photos_data);
 
+  const numPerPage = 9;
+  let numPages = Math.ceil(photos.length / numPerPage);
+  let currentPage = $state(1);
+  let selected_photos = $state(photos.slice(0, numPerPage));
+
   // returns the hieghit of the tallest column in the grid in px
   function calculateGridHeight() {
     const items = Array.from(document.getElementsByClassName("photo"));
@@ -30,25 +35,38 @@
     const maxHeight = Math.max(...columnHeights);
     return maxHeight;
   }
-
-  onMount(() => {
+  function updateGridHeight() {
     const grid = document.getElementById("photos-grid");
     if (grid) {
       const gridHeight = calculateGridHeight();
       grid.style.height = `${gridHeight}px`;
     }
+  }
+  function updateLayerHeight() {
+    const layer = document.getElementById("photos-layer");
+    // get the height of the whole screen including scroll
+    const screenHeight = document.documentElement.scrollHeight;
+    console.log("screenHeight", screenHeight);
+    if (layer) {
+      layer.style.height = `${screenHeight}px`;
+    }
+  }
+
+  onMount(() => {
+    updateGridHeight();
+    updateLayerHeight();
     window.addEventListener("resize", () => {
-      if (grid) {
-        const gridHeight = calculateGridHeight();
-        grid.style.height = `${gridHeight}px`;
-      }
+      updateGridHeight();
+      updateLayerHeight();
     });
     return () => {
-      window.removeEventListener("resize", calculateGridHeight);
+      window.removeEventListener("resize", updateGridHeight);
+      window.removeEventListener("resize", updateLayerHeight);
     };
   });
 </script>
 
+<div class="photos-layer" id="photos-layer"></div>
 <div class="main">
   <nav>
     <img src="https://avatars.githubusercontent.com/u/81335306?v=4" alt="favicon" width="30%" />
@@ -75,13 +93,29 @@
   </div>
   <h1 class="section-heading">photography</h1>
   <div class="photos" id="photos-grid">
-    {#each photos as photo, index}
+    {#each selected_photos as photo, index}
       <img
         src={photo.url}
         alt={photo.description}
         class="photo"
         onclick={window.location.assign(`/photo?id=${index}`)}
+        onload={updateGridHeight}
       />
+    {/each}
+  </div>
+  <div class="pagination">
+    {#each Array(numPages) as _, pageIndex}
+      <button
+        onclick={() => {
+          currentPage = pageIndex + 1;
+          const startIndex = (currentPage - 1) * numPerPage;
+          const endIndex = startIndex + numPerPage;
+          selected_photos = photos.slice(startIndex, endIndex);
+          console.log("selecting", startIndex, "to", endIndex, "photos:", selected_photos);
+        }}
+      >
+        {pageIndex + 1}
+      </button>
     {/each}
   </div>
   <h1 class="section-heading">contact & socials</h1>
@@ -99,6 +133,18 @@
 </div>
 
 <style>
+  .photos-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #f0f0f0;
+    z-index: -1;
+    display: flex;
+    flex-flow: column wrap;
+  }
+
   nav {
     display: flex;
     flex-direction: row;
@@ -131,16 +177,17 @@
     line-height: 1.7;
     margin: 0;
   }
-  .photos {
-    display: grid;
-    grid-template-columns: masonry;
-    grid-template-rows: masonry;
-  }
   /* https://tobiasahlin.com/blog/masonry-with-css/ */
   .photos {
     display: flex;
     flex-flow: column wrap;
     height: 1200px;
+  }
+  .pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    gap: 0.5rem;
   }
   .photo {
     width: 33%;
@@ -189,6 +236,8 @@
     width: 50%;
     height: 100%;
     margin: 20px auto;
+    /* background-color: #abfff9; */
+    /* padding: 1rem; */
     /* align-items: center; */
   }
   @media (max-width: 1000px) {
