@@ -1,8 +1,7 @@
 <script>
-  import { onMount } from "svelte";
+  import { onMount, tick } from "svelte";
   import photos_data from "$lib/assets/photos.json?raw";
   import ProjectCard from "$lib/ProjectCard.svelte";
-  import { dev } from "$app/env";
 
   const birthday = new Date("2010-02-01");
   const today = new Date();
@@ -15,33 +14,30 @@
   let currentPage = $state(1);
   let selected_photos = $state(photos.slice(0, numPerPage));
 
-  // returns the hieghit of the tallest column in the grid in px
-  function calculateGridHeight() {
+  async function updateGridHeight() {
+    await tick(); // Ensure DOM updates are committed
     const items = Array.from(document.getElementsByClassName("photo"));
-    const columnHeights = [0, 0, 0]; // 3 per column; i should make this a const
+    if (!items.length) return;
+
+    const columnHeights = [0, 0, 0];
 
     items.forEach((item, index) => {
-      // get the full height (including margins) of the item
       const style = window.getComputedStyle(item);
       const marginTop = parseFloat(style.marginTop) || 0;
       const marginBottom = parseFloat(style.marginBottom) || 0;
-      const totalItemHeight = item.getBoundingClientRect().height + marginTop + marginBottom;
+      const totalItemHeight = item.offsetHeight + marginTop + marginBottom;
 
-      const order = parseInt(style.order) || 1;
-      const columnIndex = (order - 1) % 3;
-      columnHeights[columnIndex] += totalItemHeight; // set the height of the column to the total height of the items in that column
+      const columnIndex = index % 3;
+      columnHeights[columnIndex] += totalItemHeight;
     });
 
     const maxHeight = Math.max(...columnHeights);
-    return maxHeight;
-  }
-  function updateGridHeight() {
     const grid = document.getElementById("photos-grid");
     if (grid) {
-      const gridHeight = calculateGridHeight();
-      grid.style.height = `${gridHeight}px`;
+      grid.style.height = `${maxHeight}px`;
     }
   }
+
   function updateLayerHeight() {
     const layer = document.getElementById("photos-layer");
     // get the height of the whole screen including scroll
@@ -202,11 +198,8 @@
   .photo:nth-of-type(3n + 2) {
     order: 2;
   }
-  .photo:nth-of-type(3n + 3) {
-    order: 3;
-  }
   .photo:nth-of-type(3n) {
-    order: 4;
+    order: 3;
   }
   .photos::before,
   .photos::after {
