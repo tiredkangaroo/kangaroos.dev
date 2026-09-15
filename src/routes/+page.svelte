@@ -1,5 +1,4 @@
 <script>
-  import { onMount, tick } from "svelte";
   import photos_data from "$lib/assets/photos.json?raw";
   import grand_ol_photos_data from "$lib/assets/grand_ol_photos.txt?raw";
   import ProjectCard from "$lib/ProjectCard.svelte";
@@ -96,6 +95,8 @@
     gap: 1rem;
     width: 100%;
   }
+
+  /* begin mostly ai code */
   .bg-grid {
     position: fixed;
     top: 0;
@@ -137,6 +138,7 @@
     padding: 1.5rem;
     border-radius: 8px;
   }
+  /* end ai code */
   .projects {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
