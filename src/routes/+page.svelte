@@ -1,6 +1,7 @@
 <script>
   import { onMount, tick } from "svelte";
   import photos_data from "$lib/assets/photos.json?raw";
+  import grand_ol_photos_data from "$lib/assets/grand_ol_photos.txt?raw";
   import ProjectCard from "$lib/ProjectCard.svelte";
 
   const birthday = new Date("2010-02-01");
@@ -14,52 +15,16 @@
   let currentPage = $state(1);
   let selected_photos = $state(photos.slice(0, numPerPage));
 
-  // async function updateGridHeight() {
-  //   await tick(); // Ensure DOM updates are committed
-  //   const items = Array.from(document.getElementsByClassName("photo"));
-  //   if (!items.length) return;
-
-  //   const columnHeights = [0, 0, 0];
-
-  //   items.forEach((item, index) => {
-  //     const style = window.getComputedStyle(item);
-  //     const marginTop = parseFloat(style.marginTop) || 0;
-  //     const marginBottom = parseFloat(style.marginBottom) || 0;
-  //     const totalItemHeight = item.offsetHeight + marginTop + marginBottom;
-
-  //     const columnIndex = index % 3;
-  //     columnHeights[columnIndex] += totalItemHeight;
-  //   });
-
-  //   const maxHeight = Math.max(...columnHeights);
-  //   const grid = document.getElementById("photos-grid");
-  //   if (grid) {
-  //     grid.style.height = `${maxHeight}px`;
-  //   }
-  // }
-
-  function updateLayerHeight() {
-    const layer = document.getElementById("photos-layer");
-    // get the height of the whole screen including scroll
-    const screenHeight = document.documentElement.scrollHeight;
-    console.log("screenHeight", screenHeight);
-    if (layer) {
-      layer.style.height = `${screenHeight}px`;
-    }
-  }
-
-  onMount(() => {
-    updateLayerHeight();
-    window.addEventListener("resize", () => {
-      updateLayerHeight();
-    });
-    return () => {
-      window.removeEventListener("resize", updateLayerHeight);
-    };
-  });
+  const grand_ol_photos_links = grand_ol_photos_data.split("\n").filter((link) => link.trim() !== "");
 </script>
 
-<div class="photos-layer" id="photos-layer"></div>
+<!-- hi aria im hidden. hi hidden im dad -->
+<div class="bg-grid" aria-hidden="true">
+  {#each Array(4).fill(grand_ol_photos_links).flat() as src}
+    <img {src} alt="" class="bg-photo" loading="lazy" />
+  {/each}
+</div>
+
 <div class="main">
   <nav>
     <img src="https://avatars.githubusercontent.com/u/81335306?v=4" alt="favicon" width="30%" />
@@ -125,23 +90,52 @@
 </div>
 
 <style>
-  .photos-layer {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background-color: #f0f0f0;
-    z-index: -1;
-    display: flex;
-    flex-flow: column wrap;
-  }
-
   nav {
     display: flex;
     flex-direction: row;
     gap: 1rem;
     width: 100%;
+  }
+  .bg-grid {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0; /* Keep it behind main content */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    grid-auto-rows: 140px;
+    gap: 8px;
+    overflow: hidden;
+    pointer-events: none; /* Allows scrolling/clicking through the grid */
+  }
+
+  .bg-photo {
+    width: 100%;
+    height: 100%;
+    opacity: 0.25;
+    object-fit: cover;
+    display: block;
+    transition:
+      transform 0.2s ease,
+      opacity 0.2s ease;
+    pointer-events: auto; /* Re-enables hover effects on the background photos */
+  }
+
+  .bg-photo:hover {
+    opacity: 1;
+    transform: scale(1.08);
+    z-index: 2;
+  }
+
+  /* Ensure .main is layered correctly above the background grid */
+  .main {
+    position: relative;
+    z-index: 10;
+    background-color: rgba(255, 255, 255, 0.92);
+    padding: 1.5rem;
+    border-radius: 8px;
   }
   .projects {
     display: grid;
@@ -224,9 +218,19 @@
     width: 50%;
     height: 100%;
     margin: 20px auto;
+    pointer-events: none;
     /* background-color: #abfff9; */
     /* padding: 1rem; */
     /* align-items: center; */
+  }
+  .main nav,
+  .main .projects,
+  .main .photos,
+  .main .pagination,
+  .main ul,
+  .main a,
+  .main button {
+    pointer-events: auto;
   }
   @media (max-width: 1000px) {
     .main {
