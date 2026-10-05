@@ -4,6 +4,13 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="text-scale" content="scale" />
+		<!-- Third parties on the critical path: the avatar and project
+		     screenshots render above the fold and the api backs the project
+		     descriptions. Opening the sockets early hides a DNS + TLS round
+		     trip (~150ms each) from the first paint. -->
+		<link rel="preconnect" href="https://avatars.githubusercontent.com" crossorigin />
+		<link rel="preconnect" href="https://user-cdn.hackclub-assets.com" crossorigin />
+		<link rel="dns-prefetch" href="https://api.github.com" />
 		%sveltekit.head%
 	</head>
 	<body data-sveltekit-preload-data="hover">

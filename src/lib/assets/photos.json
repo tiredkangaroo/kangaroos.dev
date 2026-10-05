@@ -3,114 +3,190 @@
     "url": "https://media.kangaroos.dev/XT2F9430.JPG",
     "date": "2023-08-01",
     "description": "Sunset",
-    "location": "Cannon Beach, Oregon"
+    "location": "Cannon Beach, Oregon",
+    "thumb": "/photos/XT2F9430.webp",
+    "w": 640,
+    "h": 360,
+    "large": "/photos/lg/XT2F9430.webp"
   },
   {
     "url": "https://media.kangaroos.dev/XT2F8808.JPG",
     "date": "2023-08-02",
     "description": "Maserati in the Sunset",
-    "location": "Oregon"
+    "location": "Oregon",
+    "thumb": "/photos/XT2F8808.webp",
+    "w": 640,
+    "h": 1141,
+    "large": "/photos/lg/XT2F8808.webp"
   },
   {
     "url": "https://media.kangaroos.dev/XT2F9286.JPG",
     "date": "2023-08-03",
     "description": "Cannon Beach",
-    "location": "Cannon Beach, Oregon"
+    "location": "Cannon Beach, Oregon",
+    "thumb": "/photos/XT2F9286.webp",
+    "w": 640,
+    "h": 360,
+    "large": "/photos/lg/XT2F9286.webp"
   },
   {
     "url": "https://media.kangaroos.dev/XT2F9452.JPG",
     "date": "2023-08-04",
     "description": "Across the Beach",
-    "location": "Cannon Beach, Oregon"
+    "location": "Cannon Beach, Oregon",
+    "thumb": "/photos/XT2F9452.webp",
+    "w": 640,
+    "h": 360,
+    "large": "/photos/lg/XT2F9452.webp"
   },
   {
     "url": "https://media.kangaroos.dev/XT2F9753.JPG",
     "date": "2023-08-05",
     "description": "Mount Ranier",
-    "location": "Washington, USA"
+    "location": "Washington, USA",
+    "thumb": "/photos/XT2F9753.webp",
+    "w": 640,
+    "h": 1141,
+    "large": "/photos/lg/XT2F9753.webp"
   },
   {
     "url": "https://media.kangaroos.dev/XT2F9924.JPG",
     "date": "2023-08-06",
     "description": "Kitten",
-    "location": "New York, USA"
+    "location": "New York, USA",
+    "thumb": "/photos/XT2F9924.webp",
+    "w": 640,
+    "h": 360,
+    "large": "/photos/lg/XT2F9924.webp"
   },
   {
     "url": "https://media.kangaroos.dev/XT2F7923.JPG",
     "date": "2023-08-07",
     "description": "Trees on a mountain",
-    "location": "Washington, USA"
+    "location": "Washington, USA",
+    "thumb": "/photos/XT2F7923.webp",
+    "w": 640,
+    "h": 360,
+    "large": "/photos/lg/XT2F7923.webp"
   },
   {
     "url": "https://media.kangaroos.dev/DSCF0373.JPG",
     "date": "",
     "description": "",
-    "location": "San Francisco, California"
+    "location": "San Francisco, California",
+    "thumb": "/photos/DSCF0373.webp",
+    "w": 640,
+    "h": 960,
+    "large": "/photos/lg/DSCF0373.webp"
   },
   {
     "url": "https://media.kangaroos.dev/DSCF0753.JPG",
     "date": "",
     "description": "",
-    "location": "San Francisco, California"
+    "location": "San Francisco, California",
+    "thumb": "/photos/DSCF0753.webp",
+    "w": 640,
+    "h": 960,
+    "large": "/photos/lg/DSCF0753.webp"
   },
   {
     "url": "https://media.kangaroos.dev/DSCF0693.JPG",
     "date": "",
     "description": "",
-    "location": "San Francisco, California"
+    "location": "San Francisco, California",
+    "thumb": "/photos/DSCF0693.webp",
+    "w": 640,
+    "h": 960,
+    "large": "/photos/lg/DSCF0693.webp"
   },
   {
-    "url": "DSCF0673.JPG",
+    "url": "https://media.kangaroos.dev/DSCF0673.JPG",
     "date": "",
     "description": "",
-    "location": "San Francisco, California"
+    "location": "San Francisco, California",
+    "thumb": "/photos/DSCF0673.webp",
+    "w": 640,
+    "h": 960,
+    "large": "/photos/lg/DSCF0673.webp"
   },
   {
     "url": "https://media.kangaroos.dev/DSCF0643.JPG",
     "date": "",
     "description": "",
-    "location": "San Francisco, California"
+    "location": "San Francisco, California",
+    "thumb": "/photos/DSCF0643.webp",
+    "w": 640,
+    "h": 960,
+    "large": "/photos/lg/DSCF0643.webp"
   },
   {
     "url": "https://media.kangaroos.dev/DSCF0628.JPG",
     "date": "",
     "description": "",
-    "location": "San Francisco, California"
+    "location": "San Francisco, California",
+    "thumb": "/photos/DSCF0628.webp",
+    "w": 640,
+    "h": 960,
+    "large": "/photos/lg/DSCF0628.webp"
   },
   {
     "url": "https://media.kangaroos.dev/DSCF0622.JPG",
     "date": "",
     "description": "",
-    "location": "San Francisco, California"
+    "location": "San Francisco, California",
+    "thumb": "/photos/DSCF0622.webp",
+    "w": 640,
+    "h": 960,
+    "large": "/photos/lg/DSCF0622.webp"
   },
   {
     "url": "https://media.kangaroos.dev/DSCF0601.JPG",
     "date": "",
     "description": "",
-    "location": "San Francisco, California"
+    "location": "San Francisco, California",
+    "thumb": "/photos/DSCF0601.webp",
+    "w": 640,
+    "h": 427,
+    "large": "/photos/lg/DSCF0601.webp"
   },
   {
     "url": "https://media.kangaroos.dev/DSCF0444.JPG",
     "date": "",
     "description": "",
-    "location": "San Francisco, California"
+    "location": "San Francisco, California",
+    "thumb": "/photos/DSCF0444.webp",
+    "w": 640,
+    "h": 427,
+    "large": "/photos/lg/DSCF0444.webp"
   },
   {
     "url": "https://media.kangaroos.dev/DSCF0429.JPG",
     "date": "",
     "description": "",
-    "location": "San Francisco, California"
+    "location": "San Francisco, California",
+    "thumb": "/photos/DSCF0429.webp",
+    "w": 640,
+    "h": 427,
+    "large": "/photos/lg/DSCF0429.webp"
   },
   {
     "url": "https://media.kangaroos.dev/DSCF0405.JPG",
     "date": "",
     "description": "",
-    "location": "San Francisco, California"
+    "location": "San Francisco, California",
+    "thumb": "/photos/DSCF0405.webp",
+    "w": 640,
+    "h": 960,
+    "large": "/photos/lg/DSCF0405.webp"
   },
   {
     "url": "https://media.kangaroos.dev/DSCF0376.JPG",
     "date": "",
     "description": "",
-    "location": "San Francisco, California"
+    "location": "San Francisco, California",
+    "thumb": "/photos/DSCF0376.webp",
+    "w": 640,
+    "h": 960,
+    "large": "/photos/lg/DSCF0376.webp"
   }
 ]

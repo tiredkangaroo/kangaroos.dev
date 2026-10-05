@@ -12,6 +12,9 @@ node_modules
 .DS_Store
 Thumbs.db
 
+# Full-resolution photo originals, cached by scripts/generate_thumbs.py
+.thumb-cache
+
 # Env
 .env
 .env.*

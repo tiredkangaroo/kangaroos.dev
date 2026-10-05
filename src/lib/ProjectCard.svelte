@@ -1,38 +1,59 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  let { title, screenshot_url, github_repo, override_desc } = $props();
 
-  let description = $state<undefined | string>(undefined);
-  let last_commit = $state<undefined | string>(undefined);
-  let homepage = $state<undefined | null | string>(undefined);
+  let { title, screenshot_url, screenshot_size, github_repo, override_desc } = $props();
+
+  // Rendered immediately with what we already know, so a slow, rate-limited or
+  // unreachable GitHub api can't leave an empty hole in the projects section.
+  // `undefined` means "not fetched yet" and falls back to override_desc.
+  let description = $state<string | undefined>(undefined);
+  let last_commit = $state<Date | undefined>(undefined);
+  let homepage = $state<string | null>(null);
 
   onMount(() => {
-    fetch("https://api.github.com/repos/" + github_repo)
-      .then((res) => res.json())
+    const controller = new AbortController();
+    // Nothing is waiting on this, so don't let a slow api hold a card open.
+    const timeout = setTimeout(() => controller.abort(), 8000);
+    fetch("https://api.github.com/repos/" + github_repo, {
+      signal: controller.signal,
+      headers: { Accept: "application/vnd.github+json" },
+    })
+      .then((res) => (res.ok ? res.json() : null))
       .then((data) => {
-        description = data.description || override_desc;
-        last_commit = data.pushed_at;
+        if (!data) return;
+        description = data.description || undefined;
+        last_commit = data.pushed_at ? new Date(data.pushed_at) : undefined;
         homepage = data.homepage || null;
-      });
+      })
+      .catch(() => {})
+      .finally(() => clearTimeout(timeout));
   });
 </script>
 
-{#if description && last_commit && homepage !== undefined}
-  <div class="project-card">
-    <img src={screenshot_url} alt={title + " screenshot"} class="project-screenshot" />
-    <div class="project-info">
-      <h2 class="project-title">{title}</h2>
-      <p class="project-description">{description}</p>
-      <p class="project-last-commit">Last push: {new Date(last_commit).toLocaleDateString()}</p>
-      <a href={"https://github.com/" + github_repo} target="_blank" rel="noopener noreferrer" class="card-button"
-        >github</a
-      >
-      {#if homepage}
-        <a href={homepage} target="_blank" rel="noopener noreferrer" class="card-button">demo</a>
-      {/if}
-    </div>
+<div class="project-card">
+  <img
+    src={screenshot_url}
+    alt={title + " screenshot"}
+    class="project-screenshot"
+    width={screenshot_size?.[0]}
+    height={screenshot_size?.[1]}
+    loading="lazy"
+    decoding="async"
+  />
+  <div class="project-info">
+    <h2 class="project-title">{title}</h2>
+    <p class="project-description">{description ?? override_desc ?? ""}</p>
+    {#if last_commit}
+      <p class="project-last-commit">Last push: {last_commit.toLocaleDateString()}</p>
+    {/if}
+    <a href={"https://github.com/" + github_repo} target="_blank" rel="noopener noreferrer" class="card-button"
+      >github</a
+    >
+    {#if homepage}
+      <a href={homepage} target="_blank" rel="noopener noreferrer" class="card-button">demo</a>
+    {/if}
   </div>
-{/if}
+</div>
 
 <style>
   .project-card {

@@ -2,6 +2,10 @@ import adapter from "@sveltejs/adapter-static";
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
+  compilerOptions: {
+    // Force runes mode for the project, except for libraries. Can be removed in svelte 6.
+    runes: ({ filename }) => (filename.split(/[/\\]/).includes("node_modules") ? undefined : true),
+  },
   kit: {
     adapter: adapter({
       pages: "build",
@@ -10,10 +14,6 @@ const config = {
       precompress: false,
       strict: true,
     }),
-    paths: {
-      // Set to your repository name if hosting at https://<username>.github.io/<repo-name>/
-      // base: process.env.NODE_ENV === 'production' ? '/my-repo-name' : ''
-    },
   },
 };
 
