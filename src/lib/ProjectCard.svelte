@@ -1,12 +1,11 @@
 <script lang="ts">
   import { onMount } from "svelte";
 
-  let { title, screenshot_url, screenshot_size, github_repo, override_desc } = $props();
+  let { title, screenshot_url, screenshot_size, github_repo, desc } = $props();
 
   // Rendered immediately with what we already know, so a slow, rate-limited or
   // unreachable GitHub api can't leave an empty hole in the projects section.
   // `undefined` means "not fetched yet" and falls back to override_desc.
-  let description = $state<string | undefined>(undefined);
   let last_commit = $state<Date | undefined>(undefined);
   let homepage = $state<string | null>(null);
 
@@ -21,7 +20,6 @@
       .then((res) => (res.ok ? res.json() : null))
       .then((data) => {
         if (!data) return;
-        description = data.description || undefined;
         last_commit = data.pushed_at ? new Date(data.pushed_at) : undefined;
         homepage = data.homepage || null;
       })
@@ -42,7 +40,7 @@
   />
   <div class="project-info">
     <h2 class="project-title">{title}</h2>
-    <p class="project-description">{description ?? override_desc ?? ""}</p>
+    <p class="project-description">{desc}</p>
     {#if last_commit}
       <p class="project-last-commit">Last push: {last_commit.toLocaleDateString()}</p>
     {/if}

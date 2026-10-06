@@ -92,14 +92,21 @@
       screenshot_url="https://user-cdn.hackclub-assets.com/019f8c90-2179-7b13-a541-f6955e07ec66/Screenshot%202026-07-22%20at%206.21.12%C3%A2%C2%80%C2%AFPM.png"
       screenshot_size={[2286, 1732]}
       github_repo="tiredkangaroo/mechanicaldinosaurs"
-      override_desc=""
+      desc="my personal infra manager. machines, vms, deployments and automations! made with go and django"
     ></ProjectCard>
     <ProjectCard
       title="lights out!"
       github_repo="Xtrrae/switch-defense"
-      override_desc="turn off all the lights before they get to you! controller: a set of four light switches. made in godot with two others & won campfire flagship!"
+      desc="turn off all the lights before they get to you! controller: a set of four light switches. made in godot with two others & won campfire flagship!"
       screenshot_url="https://user-cdn.hackclub-assets.com/01a09cb4-98ac-789e-8e01-8fa8b6653819/Screenshot%202026-09-13%20at%205.35.21%E2%80%AFPM.jpg"
       screenshot_size={[2422, 1628]}
+    ></ProjectCard>
+    <ProjectCard
+      title="swirl"
+      github_repo="hackclub/swirl"
+      desc="a jekyll website for a hack club YSWS! made and maintained by dhyan & aj."
+      screenshot_url="https://cdn.hackclub.com/01a10d32-8ec3-7043-8cd4-e0c0a580aebe/screenshot_2026-10-05_at_1.52.34___pm.png"
+      screenshot_size={[1920, 1080]}
     ></ProjectCard>
   </div>
   <h1 class="section-heading">photography</h1>
