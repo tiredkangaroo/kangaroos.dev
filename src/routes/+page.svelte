@@ -108,6 +108,20 @@
       screenshot_url="https://cdn.hackclub.com/01a10d32-8ec3-7043-8cd4-e0c0a580aebe/screenshot_2026-10-05_at_1.52.34___pm.png"
       screenshot_size={[1920, 1080]}
     ></ProjectCard>
+    <ProjectCard
+      title="cap"
+      github_repo="tiredkangaroo/cap"
+      desc="proxy server that allows you to inspect, block, and modify http traffic; made in go and react - also my first hack club ship!"
+      screenshot_url="https://raw.githubusercontent.com/tiredkangaroo/cap/refs/heads/main/screenshots/1.png"
+      screenshot_size={[1920, 1080]}
+    ></ProjectCard>
+    <ProjectCard
+      title="music"
+      github_repo="tiredkangaroo/music"
+      desc="music downloader & player app; made in go and react"
+      screenshot_url="https://cdn.hackclub.com/01a10ea8-c813-7682-bb3a-6c67f1a7c0a6/image.png"
+      screenshot_size={[1920, 1080]}
+    ></ProjectCard>
   </div>
   <h1 class="section-heading">photography</h1>
   <div class="photos" id="photos-grid">
