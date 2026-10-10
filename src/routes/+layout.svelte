@@ -1,5 +1,5 @@
 <script lang="ts">
-  import favicon from "$lib/assets/favicon.svg";
+  import favicon from "$lib/assets/pfp.png";
 
   let { children } = $props();
 </script>
@@ -18,6 +18,7 @@
       font-family: monospace;
     }
   </style>
+  <title>hi, i'm aji!</title>
 </svelte:head>
 
 {@render children()}

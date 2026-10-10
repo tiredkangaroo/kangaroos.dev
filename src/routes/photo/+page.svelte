@@ -43,11 +43,6 @@
         style="aspect-ratio: {photo.w} / {photo.h}"
       />
     </a>
-    <div class="photo-info">
-      <p class="photo-description">{photo.description}</p>
-      <p class="photo-date">{photo.date ? normalDate(photo.date) : ""}</p>
-      <p class="photo-location">{photo.location}</p>
-    </div>
   </div>
 {/if}
 
@@ -64,27 +59,7 @@
     line-height: 0;
   }
   .photo {
-    max-width: 90%;
-    max-height: 80%;
-    width: auto;
-    height: auto;
-    /* Fills the reserved box instead of overflowing it before the decode lands. */
-    object-fit: contain;
-  }
-  .photo-info {
-    margin-top: 1rem;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  .photo-info p {
-    margin: 0;
-  }
-  .photo-description {
-    font-size: 2rem;
-    font-weight: bold;
-    margin-top: 1rem;
+    max-width: 90vw;
+    max-height: 90vh;
   }
 </style>

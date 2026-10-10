@@ -35,7 +35,7 @@ https://media.kangaroos.dev/polaris/retro-0C9D39C9-491C-474B-8010-16C64BE681C3.j
 https://media.kangaroos.dev/cfg/DSC00026.jpg
 https://media.kangaroos.dev/cfg/DSC00103.jpg
 https://media.kangaroos.dev/cfg/DSC00160.jpg
-https://media.kangaroos.dev/cfg/DSC00241%202.jpg
+https://media.kangaroos.dev/cfg/cfg_DSC00241.jpg
 https://media.kangaroos.dev/cfg/DSC00325.jpg
 https://media.kangaroos.dev/cfg/GOPR1203.jpg
 https://media.kangaroos.dev/cfg/GOPR1217.jpg
@@ -44,7 +44,7 @@ https://media.kangaroos.dev/cfg/IMG_20260224_072746.jpg
 https://media.kangaroos.dev/cfg/IMG_5464.jpg
 https://media.kangaroos.dev/cfg/IMG_5490.jpg
 https://media.kangaroos.dev/cfg/PXL_20260223_035400255.jpg
-https://media.kangaroos.dev/hctg/IMG_4536%20(2)%20(1).jpg
+https://media.kangaroos.dev/hctg/IMG_4536.jpg
 https://media.kangaroos.dev/hctg/hctg_IMG_4559.jpg
 https://media.kangaroos.dev/hctg/hctg_IMG_4592.jpg
 https://media.kangaroos.dev/hctg/hctg_IMG_4606.jpg

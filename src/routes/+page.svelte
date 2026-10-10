@@ -3,6 +3,7 @@
   import photos from "$lib/assets/photos.json";
   import grand_ol_photos_data from "$lib/assets/grand_ol_photos.txt?raw";
   import ProjectCard from "$lib/ProjectCard.svelte";
+  import pfp from "$lib/assets/pfp.png";
 
   const birthday = new Date("2010-02-01");
   const today = new Date();
@@ -72,17 +73,11 @@
 
 <div class="main">
   <nav>
-    <img
-      src="https://avatars.githubusercontent.com/u/81335306?v=4"
-      alt="favicon"
-      width="30%"
-      height="30%"
-      decoding="async"
-    />
+    <img src={pfp} alt="favicon" width="30%" height="30%" decoding="async" />
     <div class="card" id="heading-card">
       <h1 class="my-freaking-name">hi, i'm aji!</h1>
       <p class="desc">i'm a <span id="age">{age}</span>-year-old from new york! i like coding & photography.</p>
-      <!-- <p><a role="button" href="https://github.com/tiredkangaroo" class="card-button">github</a></p> -->
+      <p><a href="/photoboard" class="card-button">go to photoboard</a></p>
     </div>
   </nav>
   <h1 class="section-heading">projects</h1>
@@ -124,6 +119,7 @@
     ></ProjectCard>
   </div>
   <h1 class="section-heading">photography</h1>
+  <p>to be updated!</p>
   <div class="photos" id="photos-grid">
     {#each selected_photos as photo, index (photo.url)}
       <a class="photo" href={`/photo?id=${startIndex + index}`}>
