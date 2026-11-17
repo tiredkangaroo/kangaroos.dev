@@ -67,7 +67,9 @@
 <!-- hi aria im hidden. hi hidden im dad -->
 <div class="bg-grid" id="bg-grid" aria-hidden="true">
   {#each bg_tiles as src}
-    <img {src} alt="" class="bg-photo" decoding="async" fetchpriority="low" />
+    <div class="bg-tile">
+      <img {src} alt="" class="bg-photo" decoding="async" fetchpriority="low" />
+    </div>
   {/each}
 </div>
 
@@ -198,10 +200,12 @@
       transform 0.2s ease,
       opacity 0.2s ease;
     pointer-events: auto; /* Re-enables hover effects on the background photos */
-    /* Own compositor layer, built once at load. Without this the layer is created
-       and torn down around every hover, and that churn is what made hovering lag;
-       it also keeps the 200ms opacity/scale animation off the main thread. */
-    will-change: transform, opacity;
+  }
+
+  /* Keep image intrinsic dimensions from sizing the grid item in Safari. */
+  .bg-tile {
+    min-width: 0;
+    min-height: 0;
   }
 
   /* No z-index bump here: changing it repaints the whole fixed grid (and the
